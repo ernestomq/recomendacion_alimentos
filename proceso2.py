@@ -19,7 +19,7 @@ from langchain_classic.retrievers import MultiQueryRetriever
 repord_llm = "llama-3.3-70b-versatile"
 os.environ["GROQ_API_KEY"] = # Si necesitais la conexion me la podeis pedir por mail
 # Configuración de Tesseract OCR
-pytesseract.pytesseract.tesseract_cmd = # Si necesitais la conexion me la podeis pedir por mail
+pytesseract.pytesseract.tesseract_cmd = # Si necesitais la información de la lectura me la podeis pedir por mail
 
 # Rutas y archivos
 directorio_archivos = 'archivos'  # Directorio donde están los archivos
@@ -314,3 +314,4 @@ if __name__ == "__main__":
         output_dir=output_dir
 
     )
+
