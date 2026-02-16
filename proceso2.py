@@ -12,28 +12,6 @@ from pathlib import Path
 from PIL import Image
 from langchain_classic.retrievers import MultiQueryRetriever
 
-##################
-### VARIABLES ####
-##################
-# Configuración del modelo LLM
-repord_llm = "llama-3.3-70b-versatile"
-os.environ["GROQ_API_KEY"] = # Si necesitais la conexion me la podeis pedir por mail
-# Configuración de Tesseract OCR
-pytesseract.pytesseract.tesseract_cmd = # Si necesitais la información de la lectura me la podeis pedir por mail
-
-# Rutas y archivos
-directorio_archivos = 'archivos'  # Directorio donde están los archivos
-archivo_entrada = 'revision_medica.pdf'  # Nombre del archivo a procesar
-recuperacion = "faiss_index_BAAI"
-
-# Configuración del modelo de embeddings
-name_modelo = "BAAI/bge-m3"
-kwargs_model = {"device": "cpu"}
-kwargs_encode = {"normalize_embeddings": True}
-kwargs_search = {"k": 10}
-
-# Directorio de salida
-output_dir = Path('planes_generados')
 
 ##################
 #### PROMPTS #####
@@ -213,16 +191,7 @@ def guardar_plan(plan, nombre_archivo, directorio_salida):
     archivo_salida.write_text(plan, encoding='utf-8')
     print(f"Plan guardado en: {archivo_salida}")
 
-def main(llama, url_llm, tesseract_path, directorio_archivos, archivo_entrada, 
-         recuperacion, name_modelo, kwargs_model, kwargs_encode, kwargs_search, output_dir):
-    """
-    Función principal que ejecuta el flujo completo:
-    1. Lee el archivo del paciente
-    2. Extrae datos estructurados
-    3. Carga el vector store de alimentos
-    4. Genera el plan dietético
-    5. Guarda el resultado
-    """
+def main(repord_llm, directorio_archivos, archivo_entrada, recuperacion, name_modelo, kwargs_model, kwargs_encode, kwargs_search, output_dir):
 
     ruta_completa = Path(directorio_archivos) / archivo_entrada
     filename = ruta_completa.stem
@@ -279,15 +248,15 @@ if __name__ == "__main__":
     ### VARIABLES ####
     ##################
     # Configuración del modelo LLM
-    llama = "llama3.2:latest"
-    url_llm = "http://localhost:11434"
-
+    repord_llm = "llama-3.3-70b-versatile"
+    os.environ["GROQ_API_KEY"] = # API KEY
+    
     # Configuración de Tesseract OCR
-    tesseract_path = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+    pytesseract.pytesseract.tesseract_cmd = # Ruta al ejecutable de Tesseract OCR (ajusta según tu sistema)
 
     # Rutas y archivos
-    directorio_archivos = 'archivos'
-    archivo_entrada = 'revision_medica.pdf'
+    directorio_archivos = 'archivos'  # Directorio donde están los archivos
+    archivo_entrada = 'revision_medica.pdf'  # Nombre del archivo a procesar
     recuperacion = "faiss_index_BAAI"
 
     # Configuración del modelo de embeddings
@@ -298,12 +267,10 @@ if __name__ == "__main__":
 
     # Directorio de salida
     output_dir = Path('planes_generados')
-    
+
     # Ejecutar función principal
     main(
-        llama=llama,
-        url_llm=url_llm,
-        tesseract_path=tesseract_path,
+        repord_llm=repord_llm,
         directorio_archivos=directorio_archivos,
         archivo_entrada=archivo_entrada,
         recuperacion=recuperacion,
@@ -312,6 +279,7 @@ if __name__ == "__main__":
         kwargs_encode=kwargs_encode,
         kwargs_search=kwargs_search,
         output_dir=output_dir
-
     )
+
+
 
