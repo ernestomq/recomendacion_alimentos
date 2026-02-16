@@ -9,7 +9,7 @@ def main():
             print("El índice ya existe. No hay que recrearlo.")
     else:
             loader = USDANutrientLoader(
-                    directory_path=r"C:\Users\emolt\OneDrive - UMH\Curso_NLP_udemy\python\json",
+                    directory_path=r"json",
                     encoding="utf-8",
                     include_calculated=True
             )
@@ -25,3 +25,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
