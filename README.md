@@ -1,6 +1,8 @@
 # recomendacion_alimentos
 Se trata de un proyecto que trata de resolver y ayudar a los nutricionistas para agilizar su trabajo a la hora de decidir que alimentos seleccionar para crar una dieta lo más optima posible para sus clientes sobre un paciente una vez se ha obtenido la revisión medica, a partir de un flujo de Inteligencia Artificial.
-Este proyecto se divide en 4 archivos:
+Este proyecto se divide en 3 archivos:
 * El primer archivo es **usdanutrient.py** en este archivo que procesa la información sobre el archivo json para poder obtener la información que buscamos del archivo que en el que se realiza la lectura.
 * El segundo archivo es **emmbedings.py** en este archivo se crean los embeddings una vez se llama al modulo de **usdanutrient.py** para poder extraer la información y crear los embeddings de la manera más optima para el proyecto.
 * El tercer archivo **proceso2.py** se trata del flujo de que se realiza a partir de los LLM, primeramente se realiza una lectura de uno de los distintos archivos de la carpeta *archivos* una vez se realiza la lectura del archivo y se extae el texto un modelo LLM extrae la información y se obtienen los valores que se desean para poder realizar la recuperación de los embeddings y el asesoriamiento del la alimentación que podría seguir el paciente a partir de una respuesta de texto plano, con el fin de que el nutricionista adecue estos alimentos para poder asesorar una dieta al paciente.
+
+Por otro lado la carpetas **faiss_index_BAAI** son el almacenamiento de los embeddings creados una vez realizada la lectura a partir del archivo **emmbedings.py**, **planes_generados** ha sido la salida que se ha obtenido una vez se han realizado el proceso y **archivos** son los archivos con los que se ha trabajado para realizar este proyecto.
